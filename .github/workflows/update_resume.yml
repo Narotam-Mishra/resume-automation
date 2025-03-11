@@ -1,0 +1,31 @@
+name: Update Naukri Resume
+
+on:
+  schedule:
+    - cron: '30 2 * * *'  # 8:00 AM IST
+    - cron: '30 8 * * *'   # 2:00 PM IST
+  workflow_dispatch:  # Allows manual triggering
+
+jobs:
+  update-resume:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v3
+
+      - name: Set up Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: '3.9'
+
+      - name: Install dependencies
+        run: |
+          python -m pip install --upgrade pip
+          pip install selenium webdriver-manager
+
+      - name: Run Naukri resume update script
+        env:
+          NAUKRI_USERNAME: ${{ secrets.NAUKRI_USERNAME }}
+          NAUKRI_PASSWORD: ${{ secrets.NAUKRI_PASSWORD }}
+        run: python your_script_name.py
