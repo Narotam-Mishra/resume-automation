@@ -38,7 +38,7 @@ def update_resume_on_naukri(username, password):
         time.sleep(3)  # Wait for the page to load
 
         # Click on the Login button
-        login_button = driver.find_element(By.XPATH, "//a[@title='Jobseeker Login']")
+        login_button = driver.find_element(By.XPATH, "//a[@title='Jobseeker Login' and text()='Login']")
         login_button.click()
         time.sleep(2)
 
