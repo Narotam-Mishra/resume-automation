@@ -24,6 +24,15 @@ jobs:
           python -m pip install --upgrade pip
           pip install selenium webdriver-manager
 
+      - name: Verify resume file exists
+        run: |
+          if [ ! -f "./utils/Narotam's_Resume_Mar25.pdf" ]; then
+            echo "Resume file not found at ./utils/Narotam's_Resume_Mar25.pdf"
+            exit 1
+          else
+            echo "Resume file found."
+          fi
+
       - name: Run Naukri resume update script
         env:
           NAUKRI_USERNAME: ${{ secrets.NAUKRI_USERNAME }}
