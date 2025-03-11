@@ -8,25 +8,23 @@ import datetime
 from webdriver_manager.chrome import ChromeDriverManager
 from selenium.webdriver.chrome.options import Options
 import random
-import os
-import sys  # Import sys for exit codes
+import os  # Import os module for path handling
 
 def update_resume_on_naukri(username, password):
-    driver = None  # Initialize driver variable
     try:
         print("Setting up Chrome options...")
         chrome_options = Options()
-        chrome_options.add_argument("--headless")  # Enable headless mode
+        # chrome_options.add_argument("--headless")  # Disable headless for debugging
         chrome_options.add_argument("--disable-gpu")
         chrome_options.add_argument("--no-sandbox")
         chrome_options.add_argument("--disable-dev-shm-usage")
         chrome_options.add_argument("--window-size=1920,1080")
         chrome_options.add_argument("user-agent=Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/91.0.4472.124 Safari/537.36")
-        chrome_options.add_argument("--user-data-dir=/tmp/chrome-profile")  # Unique user data directory
 
         print("Initializing WebDriver...")
         driver = webdriver.Chrome(service=Service(ChromeDriverManager().install()), options=chrome_options)
-
+        driver.maximize_window()
+        
         print("Opening Naukri website...")
         driver.get("https://www.naukri.com/")
         time.sleep(random.uniform(2, 5))  # Random delay
@@ -85,7 +83,7 @@ def update_resume_on_naukri(username, password):
         resume_path = os.path.abspath("./utils/Narotam's_Resume_Mar25.pdf")  # Convert to absolute path
         if not os.path.exists(resume_path):  # Check if file exists
             print(f"Resume file not found at: {resume_path}")
-            sys.exit(1)  # Exit with a non-zero status code
+            return
         resume_file_input = driver.find_element(By.XPATH, "//input[@type='file']")
         resume_file_input.send_keys(resume_path)  # Use absolute path
         time.sleep(random.uniform(5, 7))
@@ -94,19 +92,16 @@ def update_resume_on_naukri(username, password):
 
     except Exception as e:
         print("An error occurred:", str(e))
-        if driver:  # Check if driver was initialized
-            driver.save_screenshot("error_screenshot.png")
-        sys.exit(1)  # Exit with a non-zero status code to indicate failure
+        driver.save_screenshot("error_screenshot.png")
 
     finally:
         print("Closing the browser...")
-        if driver:  # Check if driver was initialized
-            driver.quit()
+        driver.quit()
 
 def main():
     # Replace with your actual credentials
-    username = os.getenv("NAUKRI_USERNAME")
-    password = os.getenv("NAUKRI_PASSWORD")
+    username = ""
+    password = ""
 
     print("Starting the resume update process...")
     update_resume_on_naukri(username, password)
