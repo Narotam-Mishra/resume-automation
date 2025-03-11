@@ -62,7 +62,7 @@ def update_resume_on_naukri(username, password):
 
         print("Clicking on profile icon...")
         profile_icon = WebDriverWait(driver, 40).until(
-            EC.element_to_be_clickable((By.XPATH, "//div[@class='nI-gNb-drawer__bars']/div[@class='nI-gNb-bar2']"))
+            EC.element_to_be_clickable((By.XPATH, "//div[@class='nI-gNb-bar2']"))
         )
         profile_icon.click()
         time.sleep(random.uniform(2, 4))
