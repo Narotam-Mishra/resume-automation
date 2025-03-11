@@ -9,7 +9,7 @@ from webdriver_manager.chrome import ChromeDriverManager
 from selenium.webdriver.chrome.options import Options
 import random
 import os
-import sys  # Import sys for exit codes
+import sys
 
 def update_resume_on_naukri(username, password):
     driver = None  # Initialize driver variable
@@ -37,14 +37,14 @@ def update_resume_on_naukri(username, password):
             time.sleep(60)  # Wait for manual intervention
 
         print("Waiting for the Login button...")
-        login_button = WebDriverWait(driver, 20).until(
+        login_button = WebDriverWait(driver, 30).until(
             EC.element_to_be_clickable((By.XPATH, "//a[@title='Jobseeker Login' and text()='Login']"))
         )
         login_button.click()
         time.sleep(random.uniform(1, 3))
 
         print("Entering username...")
-        username_field = WebDriverWait(driver, 20).until(
+        username_field = WebDriverWait(driver, 30).until(
             EC.presence_of_element_located((By.XPATH, "//input[@placeholder='Enter your active Email ID / Username']"))
         )
         username_field.send_keys(username)
@@ -61,21 +61,21 @@ def update_resume_on_naukri(username, password):
         time.sleep(random.uniform(5, 7))
 
         print("Clicking on profile icon...")
-        profile_icon = WebDriverWait(driver, 20).until(
+        profile_icon = WebDriverWait(driver, 40).until(
             EC.element_to_be_clickable((By.XPATH, "//div[@class='nI-gNb-drawer__bars']/div[@class='nI-gNb-bar2']"))
         )
         profile_icon.click()
         time.sleep(random.uniform(2, 4))
 
         print("Navigating to the Profile section...")
-        profile_link = WebDriverWait(driver, 20).until(
+        profile_link = WebDriverWait(driver, 40).until(
             EC.element_to_be_clickable((By.XPATH, "//a[text()='View & Update Profile']"))
         )
         profile_link.click()
         time.sleep(random.uniform(3, 5))
 
         print("Clicking on the 'Update Resume' button...")
-        update_resume_button = WebDriverWait(driver, 20).until(
+        update_resume_button = WebDriverWait(driver, 40).until(
             EC.element_to_be_clickable((By.XPATH, "//input[@value='Update resume']"))
         )
         update_resume_button.click()
