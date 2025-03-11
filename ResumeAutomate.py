@@ -8,6 +8,7 @@ import time
 import datetime
 from webdriver_manager.chrome import ChromeDriverManager
 import os
+from selenium.webdriver.chrome.options import Options
 
 # Function to log in to Naukri and update the resume
 def update_resume_on_naukri(username, password):
@@ -17,9 +18,20 @@ def update_resume_on_naukri(username, password):
         # service = Service(driver_path)
         # driver = webdriver.Chrome(service=service)
 
-        # Launch Chrome browser
-        driver = webdriver.Chrome(service=Service(ChromeDriverManager().install()))
+        # Set up Chrome options for headless mode
+        chrome_options = Options()
+        chrome_options.add_argument("--headless")  # Run in headless mode
+        chrome_options.add_argument("--disable-gpu")  # Disable GPU acceleration
+        chrome_options.add_argument("--no-sandbox")  # Bypass OS security model
+        chrome_options.add_argument("--disable-dev-shm-usage")  # Overcome limited resource problems
+
+        # Initialize and launch the WebDriver with options
+        driver = webdriver.Chrome(service=Service(ChromeDriverManager().install()), options=chrome_options)
         driver.maximize_window()
+
+        # # Launch Chrome browser
+        # driver = webdriver.Chrome(service=Service(ChromeDriverManager().install()))
+        # driver.maximize_window()
 
         # Open Naukri website
         driver.get("https://www.naukri.com/")
