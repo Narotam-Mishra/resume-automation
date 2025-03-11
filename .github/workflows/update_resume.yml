@@ -53,7 +53,7 @@ jobs:
         run: python ResumeAutomate.py
 
       - name: Upload debug screenshots
-        uses: actions/upload-artifact@v2
+        uses: actions/upload-artifact@v4
         if: always()
         with:
           name: debug-screenshots
