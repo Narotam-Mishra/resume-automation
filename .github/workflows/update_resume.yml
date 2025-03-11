@@ -22,15 +22,28 @@ jobs:
       - name: Install dependencies
         run: |
           python -m pip install --upgrade pip
-          pip install selenium webdriver-manager
+          pip install selenium
+          pip install pytest  # Required for some selenium functionality
+
+      - name: Setup Chrome
+        uses: browser-actions/setup-chrome@v1
+        with:
+          chrome-version: stable
+
+      - name: List directory contents
+        run: |
+          ls -la
+          ls -la utils/ || echo "utils directory not found"
 
       - name: Verify resume file exists
         run: |
           if [ ! -f "./utils/Narotam's_Resume_Mar25.pdf" ]; then
             echo "Resume file not found at ./utils/Narotam's_Resume_Mar25.pdf"
+            ls -la ./utils/ || echo "utils directory not found"
             exit 1
           else
             echo "Resume file found."
+            file "./utils/Narotam's_Resume_Mar25.pdf"
           fi
 
       - name: Run Naukri resume update script
@@ -38,3 +51,10 @@ jobs:
           NAUKRI_USERNAME: ${{ secrets.NAUKRI_USERNAME }}
           NAUKRI_PASSWORD: ${{ secrets.NAUKRI_PASSWORD }}
         run: python ResumeAutomate.py
+
+      - name: Upload debug screenshots
+        uses: actions/upload-artifact@v2
+        if: always()
+        with:
+          name: debug-screenshots
+          path: '*.png'
