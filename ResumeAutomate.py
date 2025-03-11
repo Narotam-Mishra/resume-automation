@@ -8,22 +8,23 @@ import datetime
 from webdriver_manager.chrome import ChromeDriverManager
 from selenium.webdriver.chrome.options import Options
 import random
-import os  # Import os module for path handling
+import os
 
 def update_resume_on_naukri(username, password):
+    driver = None  # Initialize driver variable
     try:
         print("Setting up Chrome options...")
         chrome_options = Options()
-        # chrome_options.add_argument("--headless")  # Disable headless for debugging
+        chrome_options.add_argument("--headless")  # Enable headless mode
         chrome_options.add_argument("--disable-gpu")
         chrome_options.add_argument("--no-sandbox")
         chrome_options.add_argument("--disable-dev-shm-usage")
         chrome_options.add_argument("--window-size=1920,1080")
         chrome_options.add_argument("user-agent=Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/91.0.4472.124 Safari/537.36")
+        chrome_options.add_argument("--user-data-dir=/tmp/chrome-profile")  # Unique user data directory
 
         print("Initializing WebDriver...")
         driver = webdriver.Chrome(service=Service(ChromeDriverManager().install()), options=chrome_options)
-        driver.maximize_window()
 
         print("Opening Naukri website...")
         driver.get("https://www.naukri.com/")
@@ -92,19 +93,19 @@ def update_resume_on_naukri(username, password):
 
     except Exception as e:
         print("An error occurred:", str(e))
-        driver.save_screenshot("error_screenshot.png")
+        if driver:  # Check if driver was initialized
+            driver.save_screenshot("error_screenshot.png")
 
     finally:
         print("Closing the browser...")
-        driver.quit()
+        if driver:  # Check if driver was initialized
+            driver.quit()
 
-# Main function to run the script
 def main():
-    # Naukri credentials (replace with your actual credentials)
+    # Replace with your actual credentials
     username = os.getenv("NAUKRI_USERNAME")
     password = os.getenv("NAUKRI_PASSWORD")
 
-    # Call the function to update the resume
     print("Starting the resume update process...")
     update_resume_on_naukri(username, password)
     print("Resume update process completed.")
