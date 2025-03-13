@@ -41,7 +41,7 @@ jobs:
       env:
         NAUKRI_USERNAME: ${{ secrets.NAUKRI_USERNAME }}
         NAUKRI_PASSWORD: ${{ secrets.NAUKRI_PASSWORD }}
-      run: python naukri_update_script.py
+      run: python ResumeAutomate.py
       # The script now exits with code 1 on failure, which will cause this step to fail
         
     - name: "Upload screenshots and logs (always run even on failure)"
