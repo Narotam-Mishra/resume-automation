@@ -118,7 +118,7 @@ def update_resume_on_naukri(username, password):
 
         logger.info("Clicking on the 'Update Resume' button...")
         update_resume_button = WebDriverWait(driver, 20).until(
-            EC.presence_of_element_located((By.XPATH, "//input[@value='Update resume']"))
+            EC.element_to_be_clickable((By.XPATH, "//input[@value='Update resume']"))
         )
         update_resume_button.click()
         time.sleep(random.uniform(2, 4))

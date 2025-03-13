@@ -33,7 +33,9 @@ def test_Naukri_update():
         WebDriverWait(driver, 10).until(EC.url_contains('https://www.naukri.com/mnjuser/homepage'))
         driver.get('https://www.naukri.com/mnjuser/profile?id=&orgn=homepage')
         file_input = WebDriverWait(driver, 10).until(EC.presence_of_element_located((By.XPATH, "//input[@type='file']")))
+        
         # Get script directory and construct resume path
+        logger.info("Getting Resume Path...")
         script_dir = os.path.dirname(os.path.abspath(__file__))
         resume_path = os.path.join(script_dir, "utils", "Narotam's_Resume_Mar25.pdf")
         file_input.send_keys(resume_path)
