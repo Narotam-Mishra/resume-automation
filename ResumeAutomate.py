@@ -73,7 +73,6 @@ def update_resume_on_naukri(username, password):
         login_submit_button.click()
         time.sleep(random.uniform(5, 7))
 
-        logger.info("Opening User's profile page...")
         # WebDriverWait(driver, 10).until(EC.url_contains('https://www.naukri.com/mnjuser/homepage'))
         # driver.get('https://www.naukri.com/mnjuser/profile?id=&orgn=homepage')
 
@@ -82,14 +81,8 @@ def update_resume_on_naukri(username, password):
         logger.info("Opening User's Naukari homepage...")
         logger.info(f"Current page URL: {driver.current_url}")
 
-        # profileSec = WebDriverWait(driver, 30).until(
-        #     EC.presence_of_element_located((By.XPATH, "//img[@alt='naukri user profile img' and contains(@src, 'media.naukri.com')]"))
-        # )
-        # profileSec.click()
-        # time.sleep(random.uniform(2, 4))
-        
         driver.get('https://www.naukri.com/mnjuser/profile')
-        time.sleep(random.uniform(3, 5))
+        time.sleep(random.uniform(5, 10))
         logger.info("Navigating to the Profile section...")
         logger.info(f"Current page URL: {driver.current_url}")
 
