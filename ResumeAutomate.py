@@ -74,11 +74,14 @@ def update_resume_on_naukri(username, password):
         time.sleep(random.uniform(5, 7))
 
         logger.info("Clicking on user profile image section...")
+        profileSec = None  # Initialize the variable to avoid reference errors
+
         # profileSec = WebDriverWait(driver, 30).until(
         #     EC.element_to_be_clickable((By.XPATH, "//img[@alt='naukri user profile img' and contains(@src, 'media.naukri.com')]"))
         # )
         # profileSec.click()
         # time.sleep(random.uniform(2, 4))
+        
         try:
             profileSec = WebDriverWait(driver, 30).until(
                 EC.element_to_be_clickable(
@@ -87,10 +90,19 @@ def update_resume_on_naukri(username, password):
             )
             profileSec.click()
             time.sleep(random.uniform(2, 4))
-        except Exception:
-            logger.warning("Retrying profile image click due to delay...")
-            time.sleep(3)
-            profileSec.click()
+        except Exception as e:
+            logger.warning(f"Retrying profile image click due to delay... Error: {str(e)}")
+            time.sleep(5)
+            try:
+                profileSec = WebDriverWait(driver, 20).until(
+                    EC.element_to_be_clickable(
+                        (By.XPATH, "//div[@class='nI-gNb-drawer__bars']/div[@class='nI-gNb-bar2']")
+                    )
+                )
+                profileSec.click()
+            except Exception as retry_error:
+                logger.error(f"Failed to click on profile section after retry. Error: {str(retry_error)}")
+                return False
 
         logger.info("Navigating to the Profile section...")
         profile_link = WebDriverWait(driver, 20).until(
