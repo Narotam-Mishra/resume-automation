@@ -73,52 +73,31 @@ def update_resume_on_naukri(username, password):
         login_submit_button.click()
         time.sleep(random.uniform(5, 7))
 
-        # logger.info("Clicking on user profile image section...")
-        # logger.info(f"Current page URL: {driver.current_url}")
-        # profileSec = None  # Initialize the variable to avoid reference errors
-
-        # # profileSec = WebDriverWait(driver, 30).until(
-        # #     EC.element_to_be_clickable((By.XPATH, "//img[@alt='naukri user profile img' and contains(@src, 'media.naukri.com')]"))
-        # # )
-        # # profileSec.click()
-        # # time.sleep(random.uniform(2, 4))
-        
-        # try:
-        #     profileSec = WebDriverWait(driver, 40).until(
-        #         EC.element_to_be_clickable(
-        #             (By.XPATH, "//img[@alt='naukri user profile img' and contains(@src, 'media.naukri.com')]")
-        #         )
-        #     )
-        #     profileSec.click()
-        #     time.sleep(random.uniform(2, 4))
-        # except Exception as e:
-        #     logger.warning(f"Retrying profile image click due to delay... Error: {str(e)}")
-        #     time.sleep(5)
-        #     try:
-        #         profileSec = WebDriverWait(driver, 20).until(
-        #             EC.element_to_be_clickable(
-        #                 (By.XPATH, "//div[@class='nI-gNb-drawer__bars']/div[@class='nI-gNb-bar2']")
-        #             )
-        #         )
-        #         profileSec.click()
-        #     except Exception as retry_error:
-        #         logger.error(f"Failed to click on profile section after retry. Error: {str(retry_error)}")
-        #         return False
-
-        # logger.info("Navigating to the Profile section...")
-        # profile_link = WebDriverWait(driver, 20).until(
-        #     EC.element_to_be_clickable((By.XPATH, "//a[text()='View & Update Profile']"))
-        # )
-        # profile_link.click()
-        # time.sleep(random.uniform(3, 5))
-
         logger.info("Opening User's profile page...")
         WebDriverWait(driver, 10).until(EC.url_contains('https://www.naukri.com/mnjuser/homepage'))
-        driver.get('https://www.naukri.com/mnjuser/profile?id=&orgn=homepage')
+        # driver.get('https://www.naukri.com/mnjuser/profile?id=&orgn=homepage')
 
+        logger.info("Clicking on user profile image section...")
+        logger.info(f"Current page URL: {driver.current_url}")
+
+        profileSec = WebDriverWait(driver, 30).until(
+            EC.presence_of_element_located((By.XPATH, "//img[@alt='naukri user profile img' and contains(@src, 'media.naukri.com')]"))
+        )
+        profileSec.click()
+        time.sleep(random.uniform(2, 4))
+        
+        
+        logger.info("Navigating to the Profile section...")
+        profile_link = WebDriverWait(driver, 30).until(
+            EC.presence_of_element_located((By.XPATH, "//a[text()='View & Update Profile']"))
+        )
+        profile_link.click()
+        time.sleep(random.uniform(3, 5))
+
+        logger.info(f"Current page URL: {driver.current_url}")
         logger.info("Clicking on the 'Update Resume' button...")
         update_resume_button = WebDriverWait(driver, 20).until(
-            EC.element_to_be_clickable((By.XPATH, "//input[@value='Update resume']"))
+            EC.presence_of_element_located((By.XPATH, "//input[@value='Update resume']"))
         )
         update_resume_button.click()
         time.sleep(random.uniform(2, 4))
@@ -153,11 +132,8 @@ def update_resume_on_naukri(username, password):
 
 def main():
     # Get credentials from environment variables
-    # username = os.getenv("NAUKRI_USERNAME")
-    # password = os.getenv("NAUKRI_PASSWORD")
-
-    username = "narotam21jan@gmail.com"
-    password = "Day@naru99"
+    username = os.getenv("NAUKRI_USERNAME")
+    password = os.getenv("NAUKRI_PASSWORD")
 
     # Check if credentials are available
     if not username or not password:
