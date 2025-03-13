@@ -10,6 +10,7 @@ from selenium.webdriver.chrome.options import Options
 import random
 import os
 import logging
+import sys
 
 # Set up logging
 logging.basicConfig(
@@ -72,9 +73,9 @@ def update_resume_on_naukri(username, password):
         login_submit_button.click()
         time.sleep(random.uniform(5, 7))
 
-        logger.info("Clicking on profile icon...")
+        logger.info("Clicking on View Profile section...")
         profile_icon = WebDriverWait(driver, 20).until(
-            EC.element_to_be_clickable((By.XPATH, "//div[@class='nI-gNb-drawer__bars']/div[@class='nI-gNb-bar2']"))
+            EC.element_to_be_clickable((By.XPATH, "//a[text()='View profile']"))
         )
         profile_icon.click()
         time.sleep(random.uniform(2, 4))
@@ -129,15 +130,17 @@ def main():
     # Check if credentials are available
     if not username or not password:
         logger.error("Missing credentials. Set NAUKRI_USERNAME and NAUKRI_PASSWORD environment variables.")
-        return
+        sys.exit(1)  # Exit with error code 1
     
     logger.info(f"Starting the resume update process at {datetime.datetime.now()}...")
     success = update_resume_on_naukri(username, password)
     
     if success:
         logger.info("Resume update process completed successfully.")
+        sys.exit(0)  # Exit with success code 0
     else:
         logger.warning("Resume update process completed with errors.")
+        sys.exit(1)  # Exit with error code 1
 
 if __name__ == "__main__":
     main()

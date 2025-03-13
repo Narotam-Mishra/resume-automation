@@ -41,4 +41,15 @@ jobs:
       env:
         NAUKRI_USERNAME: ${{ secrets.NAUKRI_USERNAME }}
         NAUKRI_PASSWORD: ${{ secrets.NAUKRI_PASSWORD }}
-      run: python ResumeAutomate.py
+      run: python naukri_update_script.py
+      # The script now exits with code 1 on failure, which will cause this step to fail
+        
+    - name: Upload screenshots and logs (always run even on failure)
+      if: always()  # Run this step regardless of whether previous steps succeeded or failed
+      uses: actions/upload-artifact@v3
+      with:
+        name: debug-artifacts-${{ github.run_id }}
+        path: |
+          *.png
+          *.log
+        retention-days: 5
