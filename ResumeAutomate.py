@@ -74,10 +74,6 @@ def update_resume_on_naukri(username, password):
         time.sleep(random.uniform(5, 7))
 
         logger.info("Clicking on user profile image section...")
-        # viewProfile = driver.find_element(By.XPATH, "//a[@href='/mnjuser/profile' and text()='View profile']")
-        # viewProfile.click()
-        # time.sleep(random.uniform(2, 4))
-
         profileSec = WebDriverWait(driver, 20).until(
             EC.element_to_be_clickable((By.XPATH, "//img[@alt='naukri user profile img' and contains(@src, 'media.naukri.com')]"))
         )
@@ -130,7 +126,7 @@ def main():
     # Get credentials from environment variables
     username = os.getenv("NAUKRI_USERNAME")
     password = os.getenv("NAUKRI_PASSWORD")
-    
+
     # Check if credentials are available
     if not username or not password:
         logger.error("Missing credentials. Set NAUKRI_USERNAME and NAUKRI_PASSWORD environment variables.")

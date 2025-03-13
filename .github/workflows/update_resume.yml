@@ -37,8 +37,32 @@ jobs:
         sudo apt-get update
         sudo apt-get install -y google-chrome-stable
         
+    - name: Install ChromeDriver
+      run: |
+        CHROME_VERSION=$(google-chrome --version | awk '{print $3}')
+        CHROME_MAJOR_VERSION=$(echo $CHROME_VERSION | cut -d'.' -f1)
+        CHROME_DRIVER_VERSION=$(curl -s https://chromedriver.storage.googleapis.com/LATEST_RELEASE_$CHROME_MAJOR_VERSION)
+        wget -q https://chromedriver.storage.googleapis.com/$CHROME_DRIVER_VERSION/chromedriver_linux64.zip
+        sudo unzip chromedriver_linux64.zip -d /usr/local/bin
+        sudo chmod +x /usr/local/bin/chromedriver
+        rm chromedriver_linux64.zip
+        
+    - name: Install Xvfb (for headless mode)
+      run: |
+        sudo apt-get update
+        sudo apt-get install -y xvfb
+        
     - name: Run update script
       env:
         NAUKRI_USERNAME: ${{ secrets.NAUKRI_USERNAME }}
         NAUKRI_PASSWORD: ${{ secrets.NAUKRI_PASSWORD }}
-      run: python ResumeAutomate.py
+      run: |
+        xvfb-run python ResumeAutomate.py
+        
+    - name: Upload screenshots as artifacts
+      if: failure()
+      uses: actions/upload-artifact@v3
+      with:
+        name: screenshots
+        path: |
+          *.png
