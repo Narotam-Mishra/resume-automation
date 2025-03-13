@@ -18,10 +18,10 @@ jobs:
     
     steps:
     - name: Checkout repository
-      uses: actions/checkout@v2
+      uses: actions/checkout@v3
       
     - name: Set up Python
-      uses: actions/setup-python@v2
+      uses: actions/setup-python@v4
       with:
         python-version: '3.10'
         
@@ -42,14 +42,3 @@ jobs:
         NAUKRI_USERNAME: ${{ secrets.NAUKRI_USERNAME }}
         NAUKRI_PASSWORD: ${{ secrets.NAUKRI_PASSWORD }}
       run: python ResumeAutomate.py
-      # The script exits with code 1 on failure, which will cause this step to fail
-        
-    - name: Upload screenshots and logs (always run even on failure)
-      if: always()  # Run this step regardless of whether previous steps succeeded or failed
-      uses: actions/upload-artifact@v2
-      with:
-        name: debug-artifacts-${{ github.run_id }}
-        path: |
-          *.png
-          *.log
-        retention-days: 5
