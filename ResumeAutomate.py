@@ -50,14 +50,14 @@ def update_resume_on_naukri(username, password):
             return False
 
         logger.info("Waiting for the Login button...")
-        login_button = WebDriverWait(driver, 20).until(
+        login_button = WebDriverWait(driver, 40).until(
             EC.element_to_be_clickable((By.XPATH, "//a[@title='Jobseeker Login' and text()='Login']"))
         )
         login_button.click()
         time.sleep(random.uniform(1, 3))
 
         logger.info("Entering username...")
-        username_field = WebDriverWait(driver, 20).until(
+        username_field = WebDriverWait(driver, 40).until(
             EC.presence_of_element_located((By.XPATH, "//input[@placeholder='Enter your active Email ID / Username']"))
         )
         username_field.send_keys(username)
@@ -83,7 +83,7 @@ def update_resume_on_naukri(username, password):
         # time.sleep(random.uniform(2, 4))
         
         try:
-            profileSec = WebDriverWait(driver, 30).until(
+            profileSec = WebDriverWait(driver, 40).until(
                 EC.element_to_be_clickable(
                     (By.XPATH, "//img[@alt='naukri user profile img' and contains(@src, 'media.naukri.com')]")
                 )
