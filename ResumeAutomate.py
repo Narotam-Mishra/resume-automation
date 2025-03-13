@@ -74,6 +74,7 @@ def update_resume_on_naukri(username, password):
         time.sleep(random.uniform(5, 7))
 
         logger.info("Clicking on user profile image section...")
+        logger.info(f"Current page URL: {driver.current_url}")
         profileSec = None  # Initialize the variable to avoid reference errors
 
         # profileSec = WebDriverWait(driver, 30).until(
