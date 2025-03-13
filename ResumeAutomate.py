@@ -74,7 +74,7 @@ def update_resume_on_naukri(username, password):
         time.sleep(random.uniform(5, 7))
 
         logger.info("Clicking on user profile image section...")
-        profileSec = WebDriverWait(driver, 20).until(
+        profileSec = WebDriverWait(driver, 30).until(
             EC.element_to_be_clickable((By.XPATH, "//img[@alt='naukri user profile img' and contains(@src, 'media.naukri.com')]"))
         )
         profileSec.click()
