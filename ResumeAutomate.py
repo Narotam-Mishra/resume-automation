@@ -74,9 +74,7 @@ def update_resume_on_naukri(username, password):
         time.sleep(random.uniform(5, 7))
 
         logger.info("Clicking on View Profile section...")
-        viewProfile = WebDriverWait(driver, 30).until(
-            EC.element_to_be_clickable((By.XPATH, "//a[@href='/mnjuser/profile' and text()='View profile']"))
-        )
+        viewProfile = driver.find_element(By.XPATH, "//a[@href='/mnjuser/profile' and text()='View profile']")
         viewProfile.click()
         time.sleep(random.uniform(2, 4))
 
