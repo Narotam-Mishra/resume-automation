@@ -79,25 +79,27 @@ def update_resume_on_naukri(username, password):
 
         driver.get('https://www.naukri.com/mnjuser/homepage')
         time.sleep(random.uniform(3, 5))
-        logger.info("Clicking on user profile image section...")
+        logger.info("Opening User's Naukari homepage...")
         logger.info(f"Current page URL: {driver.current_url}")
 
-        profileSec = WebDriverWait(driver, 30).until(
-            EC.presence_of_element_located((By.XPATH, "//img[@alt='naukri user profile img' and contains(@src, 'media.naukri.com')]"))
-        )
-        profileSec.click()
-        time.sleep(random.uniform(2, 4))
+        # profileSec = WebDriverWait(driver, 30).until(
+        #     EC.presence_of_element_located((By.XPATH, "//img[@alt='naukri user profile img' and contains(@src, 'media.naukri.com')]"))
+        # )
+        # profileSec.click()
+        # time.sleep(random.uniform(2, 4))
         
-        
+        driver.get('https://www.naukri.com/mnjuser/profile')
+        time.sleep(random.uniform(3, 5))
         logger.info("Navigating to the Profile section...")
-        profile_link = WebDriverWait(driver, 30).until(
-            EC.presence_of_element_located((By.XPATH, "//a[text()='View & Update Profile']"))
-        )
-        profile_link.click()
-        time.sleep(random.uniform(3, 5))
 
-        driver.get('https://www.naukri.com/mnjuser/profile?id=&orgn=homepage')
-        time.sleep(random.uniform(3, 5))
+        # profile_link = WebDriverWait(driver, 30).until(
+        #     EC.presence_of_element_located((By.XPATH, "//a[text()='View & Update Profile']"))
+        # )
+        # profile_link.click()
+        # time.sleep(random.uniform(3, 5))
+
+        # driver.get('https://www.naukri.com/mnjuser/profile?id=&orgn=homepage')
+        # time.sleep(random.uniform(3, 5))
 
         logger.info(f"Current page URL: {driver.current_url}")
         logger.info("Clicking on the 'Update Resume' button...")
