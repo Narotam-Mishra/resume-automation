@@ -52,7 +52,7 @@ jobs:
         NAUKRI_USERNAME: ${{ secrets.NAUKRI_USERNAME }}
         NAUKRI_PASSWORD: ${{ secrets.NAUKRI_PASSWORD }}
       run: |
-        xvfb-run python NaukariResumeAutomation.py
+        xvfb-run python ResumeAutomate.py
         
     - name: Upload screenshots as artifacts
       if: failure()

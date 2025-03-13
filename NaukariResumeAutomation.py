@@ -42,7 +42,6 @@ def test_Naukri_update():
         WebDriverWait(driver, 15).until(EC.presence_of_element_located((By.XPATH, "//div[contains(text(),'Resume uploaded successfully')]")))
         logger.info("Resume updated successfully!")
     except Exception as e:
-        print(f"An error occurred: {str(e)}")
         logger.info(f"An error occurred: {str(e)}")
     finally:
         driver.quit()
