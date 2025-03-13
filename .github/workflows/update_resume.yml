@@ -44,9 +44,9 @@ jobs:
       run: python naukri_update_script.py
       # The script now exits with code 1 on failure, which will cause this step to fail
         
-    - name: Upload screenshots and logs (always run even on failure)
+    - name: "Upload screenshots and logs (always run even on failure)"
       if: always()  # Run this step regardless of whether previous steps succeeded or failed
-      uses: actions/upload-artifact@v3
+      uses: actions/upload-artifact@v3@b8c1b1d42c2b1d0c4604a9d0a1bbd7f5f9e8d2d6
       with:
         name: debug-artifacts-${{ github.run_id }}
         path: |
