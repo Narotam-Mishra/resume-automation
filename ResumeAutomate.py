@@ -74,7 +74,7 @@ def update_resume_on_naukri(username, password):
         time.sleep(random.uniform(5, 7))
 
         logger.info("Opening User's profile page...")
-        WebDriverWait(driver, 10).until(EC.url_contains('https://www.naukri.com/mnjuser/homepage'))
+        # WebDriverWait(driver, 10).until(EC.url_contains('https://www.naukri.com/mnjuser/homepage'))
         # driver.get('https://www.naukri.com/mnjuser/profile?id=&orgn=homepage')
 
         logger.info("Clicking on user profile image section...")
