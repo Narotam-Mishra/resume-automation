@@ -77,6 +77,8 @@ def update_resume_on_naukri(username, password):
         # WebDriverWait(driver, 10).until(EC.url_contains('https://www.naukri.com/mnjuser/homepage'))
         # driver.get('https://www.naukri.com/mnjuser/profile?id=&orgn=homepage')
 
+        driver.get('https://www.naukri.com/mnjuser/homepage')
+        time.sleep(random.uniform(3, 5))
         logger.info("Clicking on user profile image section...")
         logger.info(f"Current page URL: {driver.current_url}")
 
@@ -94,6 +96,9 @@ def update_resume_on_naukri(username, password):
         profile_link.click()
         time.sleep(random.uniform(3, 5))
 
+        driver.get('https://www.naukri.com/mnjuser/profile?id=&orgn=homepage')
+        time.sleep(random.uniform(3, 5))
+        
         logger.info(f"Current page URL: {driver.current_url}")
         logger.info("Clicking on the 'Update Resume' button...")
         update_resume_button = WebDriverWait(driver, 20).until(
@@ -132,8 +137,11 @@ def update_resume_on_naukri(username, password):
 
 def main():
     # Get credentials from environment variables
-    username = os.getenv("NAUKRI_USERNAME")
-    password = os.getenv("NAUKRI_PASSWORD")
+    # username = os.getenv("NAUKRI_USERNAME")
+    # password = os.getenv("NAUKRI_PASSWORD")
+
+    username = "narotam21jan@gmail.com"
+    password = "Day@naru99"
 
     # Check if credentials are available
     if not username or not password:
