@@ -123,11 +123,8 @@ def update_resume_on_naukri(username, password):
 
 def main():
     # Get credentials from environment variables
-    # username = os.getenv("NAUKRI_USERNAME")
-    # password = os.getenv("NAUKRI_PASSWORD")
-
-    username = "narotam21jan@gmail.com"
-    password = "Day@naru99"
+    username = os.getenv("NAUKRI_USERNAME")
+    password = os.getenv("NAUKRI_PASSWORD")
 
     # Check if credentials are available
     if not username or not password:
