@@ -73,9 +73,6 @@ def update_resume_on_naukri(username, password):
         login_submit_button.click()
         time.sleep(random.uniform(5, 7))
 
-        # WebDriverWait(driver, 10).until(EC.url_contains('https://www.naukri.com/mnjuser/homepage'))
-        # driver.get('https://www.naukri.com/mnjuser/profile?id=&orgn=homepage')
-
         driver.get('https://www.naukri.com/mnjuser/homepage')
         time.sleep(random.uniform(3, 5))
         logger.info("Opening User's Naukari homepage...")
@@ -93,7 +90,7 @@ def update_resume_on_naukri(username, password):
         update_resume_button.click()
         time.sleep(random.uniform(2, 4))
 
-        logger.info("Uploading the new resume file...")
+        logger.info("Uploading the resume file...")
         # Get script directory and construct resume path
         script_dir = os.path.dirname(os.path.abspath(__file__))
         resume_path = os.path.join(script_dir, "utils", "Narotam's_Resume_Mar25.pdf")
