@@ -80,7 +80,7 @@ def update_resume_on_naukri(username, password):
         time.sleep(random.uniform(2, 4))
 
         print("Uploading the new resume file...")
-        resume_path = os.path.abspath("./utils/Narotam's_Resume_Mar25.pdf")  # Convert to absolute path
+        resume_path = os.path.abspath("./utils/Narotam_Resume_Mar25.pdf")  # Convert to absolute path
         if not os.path.exists(resume_path):  # Check if file exists
             print(f"Resume file not found at: {resume_path}")
             return
