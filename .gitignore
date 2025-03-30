@@ -1,2 +1,13 @@
 webdriver/
 *.log
+*.png
+
+node_modules/
+
+# Environment files
+.env
+.env.local
+.env.development
+.env.production
+.env.test
+.env.*    # Ignores all .env files with any extension
