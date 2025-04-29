@@ -85,7 +85,7 @@ const optimizedDelay = (min, max) =>
         
         // Step 6: Upload file
         console.log('[6/7] Uploading resume file...');
-        const resumePath = path.join(__dirname, 'utils', 'Narotam_Resume_Mar25.pdf');
+        const resumePath = path.join(__dirname, 'utils', 'Narotam_Resume_Apr25.pdf');
         if (!fs.existsSync(resumePath)) {
             throw new Error(`Resume file not found at: ${resumePath}`);
         }
