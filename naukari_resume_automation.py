@@ -11,6 +11,10 @@ import random
 import os  
 import logging
 import sys
+from dotenv import load_dotenv
+
+# load .env file
+load_dotenv() 
 
 # Set up logging
 logging.basicConfig(
@@ -96,7 +100,7 @@ def update_resume_on_naukri(username, password):
         logger.info("Uploading the resume file...")
         # Get script directory and construct resume path
         script_dir = os.path.dirname(os.path.abspath(__file__))
-        resume_path = os.path.join(script_dir, "utils", "Narotam_Resume_Apr25.pdf")
+        resume_path = os.path.join(script_dir, "utils", "Narotam_New_Resume_Mar26.pdf")
 
         if not os.path.exists(resume_path):  # Check if file exists
             logger.info(f"Resume file not found at: {resume_path}")
@@ -123,8 +127,11 @@ def update_resume_on_naukri(username, password):
 
 def main():
     # Get credentials from environment variables
-    username = os.getenv("NAUKRI_USERNAME")
-    password = os.getenv("NAUKRI_PASSWORD")
+    # username = os.getenv("NAUKRI_USERNAME")
+    # password = os.getenv("NAUKRI_PASSWORD")
+
+    username = os.getenv("username")
+    password = os.getenv("password")
 
     # Check if credentials are available
     if not username or not password:

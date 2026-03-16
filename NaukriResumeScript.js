@@ -8,8 +8,8 @@ const optimizedDelay = (min, max) =>
     new Promise(resolve => setTimeout(resolve, Math.random() * (max - min) + min));
 
 (async () => {
-    const username = process.env.NAUKRI_USERNAME;
-    const password = process.env.NAUKRI_PASSWORD;
+    const username = process.env.username;
+    const password = process.env.password;
     
     if (!username || !password) {
         console.error("Missing credentials. Set NAUKRI_USERNAME and NAUKRI_PASSWORD environment variables.");
@@ -85,7 +85,7 @@ const optimizedDelay = (min, max) =>
         
         // Step 6: Upload file
         console.log('[6/7] Uploading resume file...');
-        const resumePath = path.join(__dirname, 'utils', 'Narotam_Resume_Apr25.pdf');
+        const resumePath = path.join(__dirname, 'utils', 'Narotam_New_Resume_Mar26.pdf');
         if (!fs.existsSync(resumePath)) {
             throw new Error(`Resume file not found at: ${resumePath}`);
         }
