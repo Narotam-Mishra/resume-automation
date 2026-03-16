@@ -20,7 +20,7 @@ This script automates the process of updating your resume on Naukri.com using Se
 
 - Update - `brew upgrade jenkins-lts`
 
-# Puppeteer `headless` Option — Possible Values
+## Puppeteer `headless` Option — Possible Values
 
 | Value | Behavior |
 |-------|----------|
