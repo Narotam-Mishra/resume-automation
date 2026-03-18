@@ -127,8 +127,8 @@ def update_resume_on_naukri(username, password):
 
 def main():
     # Get credentials from environment variables
-    # username = os.getenv("NAUKRI_USERNAME")
-    # password = os.getenv("NAUKRI_PASSWORD")
+    username = os.getenv("NAUKRI_EMAIL")
+    password = os.getenv("NAUKRI_PASSWORD")
 
     username = os.getenv("username")
     password = os.getenv("password")
