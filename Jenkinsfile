@@ -7,7 +7,7 @@ pipeline {
 
     environment {
         // Pull .env secrets from Jenkins Credentials (set up in Step 4)
-        NAUKRI_EMAIL    = credentials('NAUKRI_EMAIL')
+        NAUKRI_USERNAME    = credentials('NAUKRI_EMAIL')
         NAUKRI_PASSWORD = credentials('NAUKRI_PASSWORD')
     }
 
