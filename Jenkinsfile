@@ -9,8 +9,7 @@ pipeline {
     stages {
         stage('Checkout') {
             steps {
-                git branch: 'main',
-                    url: 'https://github.com/Narotam-Mishra/resume-automation.git',
+                checkout scm
             }
         }
         stage('Install Dependencies') {
