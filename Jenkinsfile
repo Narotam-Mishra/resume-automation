@@ -1,12 +1,12 @@
 pipeline {
     agent any
     triggers {
-        cron('30 3,9,15 * * *')
+        cron('TZ=Asia/Kolkata\n0 7,12,18 * * *')
     }
     environment {
         PATH = "/Users/narotamkumarmishra/.nvm/versions/node/v22.20.0/bin:${env.PATH}"
-        NAUKRI_USERNAME = credentials('NAUKRI_EMAIL')      // ← credential ID from Jenkins
-        NAUKRI_PASSWORD = credentials('NAUKRI_PASSWORD')   // ← credential ID from Jenkins
+        NAUKRI_USERNAME = credentials('NAUKRI_EMAIL')
+        NAUKRI_PASSWORD = credentials('NAUKRI_PASSWORD')
     }
     stages {
         stage('Checkout') {
