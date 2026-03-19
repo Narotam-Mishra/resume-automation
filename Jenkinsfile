@@ -1,41 +1,29 @@
 pipeline {
     agent any
-
     triggers {
-        cron('30 2,8,13 * * *')
+        cron('30 3,9,15 * * *')
     }
-
     environment {
-        // Pull .env secrets from Jenkins Credentials (set up in Step 4)
-        NAUKRI_USERNAME    = credentials('NAUKRI_EMAIL')
-        NAUKRI_PASSWORD = credentials('NAUKRI_PASSWORD')
+        PATH = "/Users/narotamkumarmishra/.nvm/versions/node/v22.20.0/bin:${env.PATH}"
     }
-
     stages {
         stage('Checkout') {
             steps {
-                // Jenkins auto-clones from the configured GitHub repo
-                checkout scm
+                git branch: 'main',
+                    url: 'https://github.com/Narotam-Mishra/resume-automation.git',
             }
         }
-
         stage('Install Dependencies') {
             steps {
-                sh '''
-                    pip3 install -r requirements.txt
-                '''
+                sh 'npm install'
             }
         }
-
         stage('Upload Resume') {
             steps {
-                sh '''
-                    python3 naukari_resume_automation.py
-                '''
+                sh 'node NaukriResumeScript.js'
             }
         }
     }
-
     post {
         success {
             echo "✅ Resume uploaded at ${new Date()}"
