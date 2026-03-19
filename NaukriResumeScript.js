@@ -8,8 +8,11 @@ const optimizedDelay = (min, max) =>
     new Promise(resolve => setTimeout(resolve, Math.random() * (max - min) + min));
 
 (async () => {
-    const username = process.env.username;
-    const password = process.env.password;
+    // const username = process.env.username;
+    // const password = process.env.password;
+
+    const username = process.env.NAUKRI_USERNAME;  // ← must match left side above
+    const password = process.env.NAUKRI_PASSWORD;  // ← must match left side above
     
     if (!username || !password) {
         console.error("Missing credentials. Set NAUKRI_USERNAME and NAUKRI_PASSWORD environment variables.");

@@ -5,6 +5,8 @@ pipeline {
     }
     environment {
         PATH = "/Users/narotamkumarmishra/.nvm/versions/node/v22.20.0/bin:${env.PATH}"
+        NAUKRI_USERNAME = credentials('NAUKRI_EMAIL')      // ← credential ID from Jenkins
+        NAUKRI_PASSWORD = credentials('NAUKRI_PASSWORD')   // ← credential ID from Jenkins
     }
     stages {
         stage('Checkout') {
