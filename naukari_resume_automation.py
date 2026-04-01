@@ -100,7 +100,7 @@ def update_resume_on_naukri(username, password):
         logger.info("Uploading the resume file...")
         # Get script directory and construct resume path
         script_dir = os.path.dirname(os.path.abspath(__file__))
-        resume_path = os.path.join(script_dir, "utils", "Narotam_New_Resume_Mar26.pdf")
+        resume_path = os.path.join(script_dir, "utils", "Narotam_New_Resume_Apr26.pdf")
 
         if not os.path.exists(resume_path):  # Check if file exists
             logger.info(f"Resume file not found at: {resume_path}")
